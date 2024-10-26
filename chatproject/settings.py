@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-farkd$qu9jn8xd7(uq3+$q*a5_40@@8dfds8ne1h=&_!ks))n4
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["deploy0-oe5t.onrender.com"]
+ALLOWED_HOSTS = ["https://deploy0-oe5t.onrender.com"]
 
 
 # Application definition
@@ -118,7 +118,7 @@ USE_I18N = True
 
 USE_TZ = True
 
-CSRF_TRUSTED_ORIGINS = ['deploy0-oe5t.onrender.com']
+CSRF_TRUSTED_ORIGINS = ['https://deploy0-oe5t.onrender.com']
 ALLOW_ALL_CORS_ORIGINS=True
 
 # Static files (CSS, JavaScript, Images)
