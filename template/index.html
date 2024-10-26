@@ -128,7 +128,7 @@
             function UnreadStatus(){
                 let chatusers=document.querySelectorAll('#chatusers')
 
-                    fetch(window.location.href+'unreadmessages/',{
+                    fetch('https://deploy0-oe5t.onrender.com/unreadmessages/',{
                         method:'POST',
                         headers:{
                             'Content-Type':'application/json',
@@ -247,7 +247,7 @@
 
             async function MessageView(receiver_id){
             
-                await fetch(window.location.href+'/chatroom/'+receiver_id+'/',{
+                await fetch('https://deploy0-oe5t.onrender.com/chatroom/'+receiver_id+'/',{
                     method: 'GET',
                 })
                 .then(res=>res.json())
@@ -476,7 +476,7 @@
 
             function Status(receiver_id){
                 let indicator=document.getElementById('indicator')
-                fetch(window.location.href+'status/'+receiver_id+'/',{
+                fetch('https://deploy0-oe5t.onrender.com/status/'+receiver_id+'/',{
                     method:'GET',
                     headers:{
                         'Content-Type':'application/json'
@@ -500,7 +500,7 @@
 
             function MarkRead(id){
                 console.log(id)
-                fetch(window.location.href+'markasread/'+id+'/',{
+                fetch('https://deploy0-oe5t.onrender.com/markasread/'+id+'/',{
                     method:'POST',
                     headers:{
                         'Content-Type':'application/json',
