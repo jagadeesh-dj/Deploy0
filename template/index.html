@@ -128,7 +128,7 @@
             function UnreadStatus(){
                 let chatusers=document.querySelectorAll('#chatusers')
 
-                    fetch(window.location.href+'/unreadmessages/',{
+                    fetch(window.location.href+'unreadmessages/',{
                         method:'POST',
                         headers:{
                             'Content-Type':'application/json',
@@ -461,7 +461,7 @@
                 console.log('triggered')
                 let token = document.querySelector('input[name="csrfmiddlewaretoken"]').value;
                 let clearchat=document.getElementById('clearchat')
-                const response=fetch(window.location.href+'/clearchat/'+receiver_id+'/',{
+                const response=fetch(window.location.href+'clearchat/'+receiver_id+'/',{
                     method:'POST',
                     headers:{
                         'Content-Type':'application/json',
@@ -476,7 +476,7 @@
 
             function Status(receiver_id){
                 let indicator=document.getElementById('indicator')
-                fetch(window.location.href+'/status/'+receiver_id+'/',{
+                fetch(window.location.href+'status/'+receiver_id+'/',{
                     method:'GET',
                     headers:{
                         'Content-Type':'application/json'
@@ -500,7 +500,7 @@
 
             function MarkRead(id){
                 console.log(id)
-                fetch(window.location.href+'/markasread/'+id+'/',{
+                fetch(window.location.href+'markasread/'+id+'/',{
                     method:'POST',
                     headers:{
                         'Content-Type':'application/json',
