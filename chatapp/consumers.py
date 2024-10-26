@@ -70,7 +70,6 @@ class chatconsumer(AsyncWebsocketConsumer):
             self.room_name=f'{self.receiver}--{self.sender}'
 
         self.group_room_name='chat_%s' % self.room_name
-        cache.set(f"user_{self.sender}_channel", self.group_room_name, timeout=None)
 
         print(self.group_room_name)
         await self.channel_layer.group_add(
@@ -86,7 +85,6 @@ class chatconsumer(AsyncWebsocketConsumer):
             self.channel_name
         )
     
-        cache.delete(f"user_{self.sender}_channel")
         
     async def receive(self,text_data):
         data=json.loads(text_data)
