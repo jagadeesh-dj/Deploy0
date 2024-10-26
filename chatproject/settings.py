@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-farkd$qu9jn8xd7(uq3+$q*a5_40@@8dfds8ne1h=&_!ks))n4
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["deploy0-oe5t.onrender.com",'localhost']
+ALLOWED_HOSTS = ["deploy0-oe5t.onrender.com"]
 
 
 # Application definition
@@ -143,16 +143,16 @@ ASGI_APPLICATION='chatproject.asgi.application'
 # }
 
 
-CHANNEL_LAYERS = {
-    'default': {
-        'BACKEND': 'channels_redis.core.RedisChannelLayer',
-        'CONFIG': {
-            'hosts': [('localhost', 6379)],
-        },
-    },
-}
 # CHANNEL_LAYERS = {
-#     "default": {
-#         "BACKEND": "channels.layers.InMemoryChannelLayer"
-#     }
+#     'default': {
+#         'BACKEND': 'channels_redis.core.RedisChannelLayer',
+#         'CONFIG': {
+#             'hosts': [('localhost', 6379)],
+#         },
+#     },
 # }
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels.layers.InMemoryChannelLayer"
+    }
+}
