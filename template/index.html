@@ -100,7 +100,7 @@
                 mainsocket.close()
             }
 
-            mainsocket=new WebSocket('wss://'+window.location.href+'/ws/mainsocket/')
+            mainsocket=new WebSocket('wss://deploy0-oe5t.onrender.com/ws/mainsocket/')
 
             mainsocket.onopen=()=>{
                 console.log('main socket connected')
@@ -128,7 +128,7 @@
             function UnreadStatus(){
                 let chatusers=document.querySelectorAll('#chatusers')
 
-                    fetch('http://window.location.href/unreadmessages/',{
+                    fetch(window.location.href+'/unreadmessages/',{
                         method:'POST',
                         headers:{
                             'Content-Type':'application/json',
@@ -176,7 +176,7 @@
                     chatsocket.close()
                 }
 
-                chatsocket=new WebSocket('wss://'+window.location.href+'/ws/chatroom/'+receiver_id+'/')
+                chatsocket=new WebSocket('wss://deploy0-oe5t.onrender.com/ws/chatroom/'+receiver_id+'/')
                 
             
                 chatsocket.onopen=()=>{
