@@ -94,13 +94,27 @@
             }))
        
         })
+        function Network(){
+
+            let network=window.location.href
+    
+            if(network==='https://deploy0-oe5t.onrender.com'){
+                return 'deploy0-oe5t.onrender.com'
+            }
+            else if(network==='https://deploy0-production.up.railway.app'){
+                return 'https://deploy0-production.up.railway.app'
+            }
+        }
 
         function MainConnection(){
+
+            let Mynetwork=Network()
+
             if(mainsocket){
                 mainsocket.close()
             }
 
-            mainsocket=new WebSocket('wss://deploy0-oe5t.onrender.com/ws/mainsocket/')
+            mainsocket=new WebSocket('wss://'+ Mynetwork +'/ws/mainsocket/')
 
             mainsocket.onopen=()=>{
                 console.log('main socket connected')
@@ -128,7 +142,7 @@
             function UnreadStatus(){
                 let chatusers=document.querySelectorAll('#chatusers')
 
-                    fetch('https://deploy0-oe5t.onrender.com/unreadmessages/',{
+                    fetch(window.location.href+'unreadmessages/',{
                         method:'POST',
                         headers:{
                             'Content-Type':'application/json',
@@ -171,12 +185,14 @@
             let currentdata=new Date()
             
             function websocket(receiver_id){
-         
+                
+                let Mynetwork=Network()
+
                 if (chatsocket){
                     chatsocket.close()
                 }
 
-                chatsocket=new WebSocket('wss://deploy0-oe5t.onrender.com/ws/chatroom/'+receiver_id+'/')
+                chatsocket=new WebSocket('wss://'+Mynetwork+'/ws/chatroom/'+receiver_id+'/')
                 
             
                 chatsocket.onopen=()=>{
@@ -247,7 +263,7 @@
 
             async function MessageView(receiver_id){
             
-                await fetch('https://deploy0-oe5t.onrender.com/chatroom/'+receiver_id+'/',{
+                await fetch(window.location.href+'chatroom/'+receiver_id+'/',{
                     method: 'GET',
                 })
                 .then(res=>res.json())
@@ -476,7 +492,7 @@
 
             function Status(receiver_id){
                 let indicator=document.getElementById('indicator')
-                fetch('https://deploy0-oe5t.onrender.com/status/'+receiver_id+'/',{
+                fetch(window.loation.href+'status/'+receiver_id+'/',{
                     method:'GET',
                     headers:{
                         'Content-Type':'application/json'
@@ -500,7 +516,7 @@
 
             function MarkRead(id){
                 console.log(id)
-                fetch('https://deploy0-oe5t.onrender.com/markasread/'+id+'/',{
+                fetch(window.loation.href+'markasread/'+id+'/',{
                     method:'POST',
                     headers:{
                         'Content-Type':'application/json',
