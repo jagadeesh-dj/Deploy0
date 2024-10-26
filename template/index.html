@@ -114,7 +114,7 @@
                 mainsocket.close()
             }
 
-            mainsocket=new WebSocket('wss://'+ Mynetwork +'/ws/mainsocket/')
+            mainsocket=new WebSocket('wss://'+Mynetwork+'/ws/mainsocket/')
 
             mainsocket.onopen=()=>{
                 console.log('main socket connected')
