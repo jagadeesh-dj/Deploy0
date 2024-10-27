@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-farkd$qu9jn8xd7(uq3+$q*a5_40@@8dfds8ne1h=&_!ks))n4
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["deploy0-oe5t.onrender.com","deploy0-production.up.railway.app"]
+ALLOWED_HOSTS = ["deploy0-oe5t.onrender.com","deploy0-production.up.railway.app",'localhost','127.0.0.1']
 
 
 # Application definition
@@ -81,14 +81,35 @@ WSGI_APPLICATION = 'chatproject.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+# postgresql://postgres:hZbyvPssTkDTLgzABjPkILLsHVAeoycz@autorack.proxy.rlwy.net:46933/railway
+# PGPASSWORD=hZbyvPssTkDTLgzABjPkILLsHVAeoycz psql -h autorack.proxy.rlwy.net -U postgres -p 46933 -d railway
+DATABASES={
+    'default':{
+        'ENGINE':'django.db.backends.postgresql',
+        'NAME': os.environ.get('railway'),
+        'HOST': os.environ.get('autorack.proxy.rlwy.net'),
+        'USER': os.environ.get('postgres'),
+        'PASSWORD': os.environ.get('hZbyvPssTkDTLgzABjPkILLsHVAeoycz'),
+        'PORT': os.environ.get('46933')
     }
 }
 
-
+# DATABASES={
+#     'default':{
+#         'ENGINE':'django.db.backends.mysql',
+#         'NAME':'Django',
+#         'HOST':'localhost',
+#         'USER': 'root',
+#         'PASSWORD':'Jaga@123',
+#         'PORT': '3306'
+#     }
+# }
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
@@ -143,16 +164,18 @@ ASGI_APPLICATION='chatproject.asgi.application'
 # }
 
 
-# CHANNEL_LAYERS = {
-#     'default': {
-#         'BACKEND': 'channels_redis.core.RedisChannelLayer',
-#         'CONFIG': {
-#             'hosts': [('localhost', 6379)],
-#         },
-#     },
-# }
+
 CHANNEL_LAYERS = {
     "default": {
-        "BACKEND": "channels.layers.InMemoryChannelLayer"
-    }
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [(os.environ.get("REDIS_URL", "redis://default:KOornoLgPVxQLbUyqbfHwYtNCxYwgkxn@junction.proxy.rlwy.net:42452"))],
+        },
+    },
 }
+
+# CHANNEL_LAYERS = {
+#     "default": {
+#         "BACKEND": "channels.layers.InMemoryChannelLayer"
+#     }
+# }
