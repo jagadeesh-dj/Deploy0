@@ -89,17 +89,22 @@ WSGI_APPLICATION = 'chatproject.wsgi.application'
 # }
 # postgresql://postgres:hZbyvPssTkDTLgzABjPkILLsHVAeoycz@autorack.proxy.rlwy.net:46933/railway
 # PGPASSWORD=hZbyvPssTkDTLgzABjPkILLsHVAeoycz psql -h autorack.proxy.rlwy.net -U postgres -p 46933 -d railway
-DATABASES={
-    'default':{
-        'ENGINE':'django.db.backends.postgresql',
-        'NAME': os.environ.get('railway'),
-        'HOST': os.environ.get('autorack.proxy.rlwy.net'),
-        'USER': os.environ.get('postgres'),
-        'PASSWORD': os.environ.get('hZbyvPssTkDTLgzABjPkILLsHVAeoycz'),
-        'PORT': os.environ.get('46933')
+# DATABASES={
+#     'default':{
+#         'ENGINE':'django.db.backends.postgresql',
+#         'NAME': os.environ.get('railway'),
+#         'HOST': os.environ.get('autorack.proxy.rlwy.net'),
+#         'USER': os.environ.get('postgres'),
+#         'PASSWORD': os.environ.get('hZbyvPssTkDTLgzABjPkILLsHVAeoycz'),
+#         'PORT': os.environ.get('46933')
+#     }
+# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / "db.sqlite3",
     }
 }
-
 # DATABASES={
 #     'default':{
 #         'ENGINE':'django.db.backends.mysql',
@@ -165,17 +170,17 @@ ASGI_APPLICATION='chatproject.asgi.application'
 
 
 
-CHANNEL_LAYERS = {
-    "default": {
-        "BACKEND": "channels_redis.core.RedisChannelLayer",
-        "CONFIG": {
-            "hosts": [(os.environ.get("REDIS_URL", "redis://default:KOornoLgPVxQLbUyqbfHwYtNCxYwgkxn@junction.proxy.rlwy.net:42452"))],
-        },
-    },
-}
-
 # CHANNEL_LAYERS = {
 #     "default": {
-#         "BACKEND": "channels.layers.InMemoryChannelLayer"
-#     }
+#         "BACKEND": "channels_redis.core.RedisChannelLayer",
+#         "CONFIG": {
+#             "hosts": [(os.environ.get("REDIS_URL", "redis://default:KOornoLgPVxQLbUyqbfHwYtNCxYwgkxn@junction.proxy.rlwy.net:42452"))],
+#         },
+#     },
 # }
+
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels.layers.InMemoryChannelLayer"
+    }
+}
